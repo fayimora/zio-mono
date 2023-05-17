@@ -16,20 +16,44 @@ ThisBuild / scalacOptions ++=
     "-Ysafe-init",
   ) ++ Seq("-rewrite", "-indent") ++ Seq("-source", "future-migration")
 
-lazy val `zio-mono` =
+lazy val root =
   project
     .in(file("."))
-    .settings(name := "zio-mono")
+    .settings(name := "zio-mono-root")
+    .aggregate(api, worker1, worker2)
+
+lazy val api =
+  project
+    .in(file("apps/api"))
+    .settings(name := "api")
     .settings(commonSettings)
     .settings(dependencies)
     .settings(
-      Compile / mainClass := Some("com.fayi.ziomono.HelloApp")
+      Compile / mainClass := Some("com.fayi.ziomono.api.ApiApp")
     )
-    .enablePlugins(JavaAppPackaging)
-    .enablePlugins(
-      ZioSbtEcosystemPlugin,
-      ZioSbtCiPlugin,
-    )
+    .enablePlugins(commonPlugins: _*)
+
+lazy val worker1 = project
+  .in(file("apps/worker1"))
+  .settings(name := "worker1")
+  .settings(commonSettings)
+  .settings(dependencies)
+  .settings(
+    Compile / mainClass := Some("com.fayi.ziomono.worker1.Worker1App")
+  )
+  .enablePlugins(commonPlugins: _*)
+
+lazy val worker2 = project
+  .in(file("apps/worker2"))
+  .settings(name := "worker2")
+  .settings(commonSettings)
+  .settings(dependencies)
+  .settings(
+    Compile / mainClass := Some("com.fayi.ziomono.worker1.Worker2App")
+  )
+  .enablePlugins(commonPlugins: _*)
+
+lazy val commonPlugins = Seq(JavaAppPackaging /*, ZioSbtEcosystemPlugin, ZioSbtCiPlugin*/ )
 
 lazy val commonSettings = {
   lazy val commonScalacOptions = Seq(
