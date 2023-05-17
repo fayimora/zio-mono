@@ -31,7 +31,7 @@ lazy val api =
     .settings(
       Compile / mainClass := Some("com.fayi.ziomono.api.ApiApp")
     )
-    .enablePlugins(commonPlugins: _*)
+    .enablePlugins(commonPlugins *)
 
 lazy val worker1 = project
   .in(file("apps/worker1"))
@@ -41,7 +41,7 @@ lazy val worker1 = project
   .settings(
     Compile / mainClass := Some("com.fayi.ziomono.worker1.Worker1App")
   )
-  .enablePlugins(commonPlugins: _*)
+  .enablePlugins(commonPlugins *)
 
 lazy val worker2 = project
   .in(file("apps/worker2"))
@@ -51,7 +51,7 @@ lazy val worker2 = project
   .settings(
     Compile / mainClass := Some("com.fayi.ziomono.worker1.Worker2App")
   )
-  .enablePlugins(commonPlugins: _*)
+  .enablePlugins(commonPlugins *)
 
 lazy val commonPlugins = Seq(JavaAppPackaging /*, ZioSbtEcosystemPlugin, ZioSbtCiPlugin*/ )
 
