@@ -49,7 +49,7 @@ lazy val worker2 = project
   .settings(commonSettings)
   .settings(dependencies)
   .settings(
-    Compile / mainClass := Some("com.fayi.ziomono.worker1.Worker2App")
+    Compile / mainClass := Some("com.fayi.ziomono.worker2.Worker2App")
   )
   .enablePlugins(commonPlugins *)
 
