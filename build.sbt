@@ -22,6 +22,14 @@ lazy val `zio-mono` =
     .settings(name := "zio-mono")
     .settings(commonSettings)
     .settings(dependencies)
+    .settings(
+      Compile / mainClass := Some("com.fayi.ziomono.HelloApp")
+    )
+    .enablePlugins(JavaAppPackaging)
+    .enablePlugins(
+      ZioSbtEcosystemPlugin,
+      ZioSbtCiPlugin,
+    )
 
 lazy val commonSettings = {
   lazy val commonScalacOptions = Seq(
@@ -46,6 +54,10 @@ lazy val commonSettings = {
 lazy val dependencies = Seq(
   libraryDependencies ++= Seq(
     // main dependencies
+    "dev.zio" %% "zio" % "2.0.13",
+    "dev.zio" %% "zio-http" % "3.0.0-RC1",
+    "dev.zio" %% "zio-json" % "0.5.0",
+    "dev.zio" %% "zio-prelude" % "1.0.0-RC19",
   ),
   libraryDependencies ++= Seq(
     com.eed3si9n.expecty.expecty,
