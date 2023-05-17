@@ -4,7 +4,7 @@ import zio.http.Server.Config
 import zio.{ Scope, ZIO, ZIOAppArgs, ZIOAppDefault }
 import zio.http.{ Handler, Server }
 
-object App extends ZIOAppDefault:
+object ApiApp extends ZIOAppDefault:
   val app = Handler.text("Hello World!").toHttp
 
   override def run =
