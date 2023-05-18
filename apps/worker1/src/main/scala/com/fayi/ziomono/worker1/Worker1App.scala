@@ -7,5 +7,5 @@ object Worker1App extends ZIOAppDefault:
   def run =
     ZIO
       .log(s"Hello the time is ${java.time.LocalTime.now()} from worker 1")
-      .repeat(Schedule.spaced(5.seconds))
+      .repeat(Schedule.spaced(60.seconds))
       .forever
