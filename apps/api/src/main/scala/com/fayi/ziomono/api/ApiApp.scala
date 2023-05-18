@@ -13,8 +13,10 @@ object ApiApp extends ZIOAppDefault:
     case Method.GET -> root => ZIO.succeed(Response.text("Ok"))
   }
 
+  val middlewares = HttpAppMiddleware.debug ++ HttpAppMiddleware.requestLogging()
+
   override def run =
     Server
-      .serve(app)
+      .serve(app @@ middlewares)
       .flatMap(p => Console.printLine(s"Started server on port: $p"))
       .provide(Server.default)
