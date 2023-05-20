@@ -1,0 +1,26 @@
+services:
+  - type: web
+    name: api
+    env: docker
+    dockerfilePath: ./apps/api/Dockerfile
+    dockerContext: .
+    repo: https://github.com/fayimora/zio-mono
+    region: frankfurt
+    plan: starter
+    branch: renderio
+    rootDir: .
+    numInstances: 1
+    healthCheckPath: /
+    scaling:
+      minInstances: 1
+      maxInstances: 3
+      targetMemoryPercent: 80 # optional if targetCPUPercent is set (valid: 1-90)
+      targetCPUPercent: 80 # optional if targetMemory is set (valid: 1-90)
+  - type: worker
+    name: worker1
+    plan: starter
+    env: docker
+    dockerfilePath: ./apps/worker1/Dockerfile
+    dockerContext: .
+    rootDir: ./apps/worker1
+    branch: renderio
