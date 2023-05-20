@@ -22,3 +22,12 @@ services:
     dockerfilePath: ./apps/worker1/Dockerfile
     dockerContext: .
     branch: renderio
+  - type: worker
+    name: worker2
+    plan: starter
+    region: frankfurt
+    env: docker
+    dockerfilePath: ./apps/worker2/Dockerfile
+    dockerContext: .
+    branch: renderio
+
