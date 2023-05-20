@@ -50,6 +50,6 @@ services:
     maxmemoryPolicy: noeviction # optional (defaults to allkeys-lru)
 
 databases:
-  - name: zio-mono-pg
-    databaseName: zio-mono-db # (Render may add a suffix)
-    user: zio-mono
+  - name: zio_mono_pg
+    databaseName: zio_mono_db # (Render may add a suffix)
+    user: zio_mono
