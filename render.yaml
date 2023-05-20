@@ -14,6 +14,17 @@ services:
       maxInstances: 3
       targetMemoryPercent: 80 # optional if targetCPUPercent is set (valid: 1-90)
       targetCPUPercent: 80 # optional if targetMemory is set (valid: 1-90)
+    envVars:
+      - key: REDIS_HOST
+        fromService:
+          type: redis
+          name: zio-mono-redis
+          property: host # available properties are listed below
+      - key: REDIS_PORT
+        fromService:
+          type: redis
+          name: zio-mono-redis
+          property: port
   - type: worker
     name: worker1
     plan: starter
@@ -30,4 +41,15 @@ services:
     dockerfilePath: ./apps/worker2/Dockerfile
     dockerContext: .
     branch: renderio
+  - type: redis
+    name: zio-mono-redis
+    ipAllowList: # required
+      - source: 0.0.0.0/0
+        description: everywhere
+    plan: free
+    maxmemoryPolicy: noeviction # optional (defaults to allkeys-lru)
 
+databases:
+  - name: zio-mono-pg
+    databaseName: zio-mono-db (Render may add a suffix)
+    user: zio-mono
