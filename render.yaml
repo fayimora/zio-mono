@@ -9,7 +9,6 @@ services:
     plan: starter
     branch: renderio
     rootDir: .
-    numInstances: 1
     healthCheckPath: /
     scaling:
       minInstances: 1
