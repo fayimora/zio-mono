@@ -55,3 +55,4 @@ databases:
     databaseName: zio_mono_db # (Render may add a suffix)
     user: zio_mono
     region: frankfurt
+    plan: free
