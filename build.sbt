@@ -2,6 +2,7 @@ import Dependencies._
 
 ThisBuild / organization := "com.fayi"
 ThisBuild / scalaVersion := "3.2.2"
+ThisBuild / name := "zio-mono-root"
 
 ThisBuild / scalacOptions ++=
   Seq(
@@ -53,7 +54,7 @@ lazy val worker2 = project
   )
   .enablePlugins(commonPlugins *)
 
-lazy val commonPlugins = Seq(JavaAppPackaging /*, ZioSbtEcosystemPlugin, ZioSbtCiPlugin*/ )
+lazy val commonPlugins = Seq(JavaAppPackaging, ZioSbtEcosystemPlugin /*, ZioSbtCiPlugin*/ )
 
 lazy val commonSettings = {
   lazy val commonScalacOptions = Seq(
